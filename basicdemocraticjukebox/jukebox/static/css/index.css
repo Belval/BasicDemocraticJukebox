@@ -1,0 +1,20 @@
+body {
+
+}
+
+h2 {
+    text-align: center;
+}
+
+#song-table {
+    margin-top: 20px;
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 5px;
+}
+
+#file-selector {
+    width: 0px;
+    height: 0px;
+    overflow: hidden;
+}

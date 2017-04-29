@@ -6,5 +6,5 @@ urlpatterns = [
     url(r'^songs/$', get_songs),
     url(r'^upload/$', upload),
     url(r'^upvote/(\d+)/$', upvote),
-    url(r'^downvote/(\d+)/$', upvote),
+    url(r'^downvote/(\d+)/$', downvote),
 ]

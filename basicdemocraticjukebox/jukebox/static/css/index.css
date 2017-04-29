@@ -1,8 +1,13 @@
 body {
-
+    overflow-x: hidden;
 }
 
 h2 {
+    text-align: center;
+}
+
+#current-song-div {
+    margin-top: 20px;
     text-align: center;
 }
 
@@ -13,8 +18,30 @@ h2 {
     border-spacing: 5px;
 }
 
+#song-table-container {
+    margin-bottom: 50px;
+}
+
+#song-table-list {
+    overflow: scroll;
+}
+
 #file-selector {
     width: 0px;
     height: 0px;
+    overflow: hidden;
+}
+
+#audio-control-container {
+    position : fixed;
+    bottom: 0;
+    width:100%;
+}
+
+#audio-control {
+    width: 100%;
+}
+
+.song-title {
     overflow: hidden;
 }

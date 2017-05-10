@@ -5,7 +5,12 @@ $(document).ready(() => {
     $('#add-song-button').click(() => {
         $('#file-selector').trigger('click')
     })
+    $('#audio-control').on('ended', function(){
+        console.log('Song ended')
+        fetchCurrentSong()
+    });
     refreshSongs()
+    fetchCurrentSong()
 })
 
 function uploadFiles() {
@@ -49,6 +54,20 @@ function refreshSongs() {
             for(var song of songs) {
                 addSongElement(song)
             }
+        }
+    })
+}
+
+function fetchCurrentSong() {
+    console.log('Fetch current song')
+    $.ajax({
+        url: '/currentsong/',
+        type: 'GET',
+        success: (data) => {
+            $('#audio-source').attr('src', '/songdata/' + data['song'])
+            $('#audio-control')[0].load()
+            $('#audio-control')[0].play()
+            refreshSongs()
         }
     })
 }

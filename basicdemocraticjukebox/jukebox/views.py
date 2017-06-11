@@ -74,12 +74,17 @@ def get_current_song(request):
         if current_song.is_over():
             current_song.song.votes.all().delete()
             new_current_song = PlayedSong.objects.create(song=Song.objects.all().annotate(upvote=Sum(Case(When(votes__is_positive=True, then=1), default=0, output_field=IntegerField()))).order_by('-upvote')[0])
-            return HttpResponse(json.dumps(model_to_dict(new_current_song)), content_type='application/json')        
+            song_dict = model_to_dict(new_current_song)
+            song_dict['song_title'] = new_current_song.song.title
+            return HttpResponse(json.dumps(song_dict), content_type='application/json')        
         else:
-            return HttpResponse(json.dumps(model_to_dict(current_song)), content_type='application/json')
+            song_dict = model_to_dict(current_song)
+            song_dict['song_title'] = current_song.song.title
+            return HttpResponse(json.dumps(song_dict), content_type='application/json')
     except Exception as e:
-        print(e)
         current_song = PlayedSong.objects.create(song=Song.objects.all().annotate(upvote=Sum(Case(When(votes__is_positive=True, then=1), default=0, output_field=IntegerField()))).order_by('-upvote')[0])
+        song_dict = model_to_dict(current_song)
+        song_dict['song_title'] = current_song.song.title
         return HttpResponse(json.dumps(model_to_dict(current_song)), content_type='application/json')
 
 def get_song(request, id):

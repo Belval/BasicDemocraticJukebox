@@ -64,6 +64,7 @@ function fetchCurrentSong() {
         url: '/currentsong/',
         type: 'GET',
         success: (data) => {
+            $('#song-title').html(data['song_title'])
             $('#audio-source').attr('src', '/songdata/' + data['song'])
             $('#audio-control')[0].load()
             $('#audio-control')[0].play()

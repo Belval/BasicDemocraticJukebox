@@ -45,3 +45,7 @@ h2 {
 .song-title {
     overflow: hidden;
 }
+
+#song-title {
+    text-align: center;
+}
